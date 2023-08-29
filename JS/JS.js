@@ -4,7 +4,7 @@
         taskNumber = 0;
         tasks.push({
             content: newTaskContent,
-           
+            done: false,
         });
         document.getElementById("myInput").value = "";
         render();
@@ -19,7 +19,7 @@
         for (const task of tasks){
            
             taskNumber++;
-            htmlString += 
+            htmlString +=
             `<div class="listBody__row">
             <div class="listBody__lp">
             ${taskNumber}
@@ -40,7 +40,7 @@
         </div> `;
         }
         document.querySelector(".listBody").innerHTML = htmlString;
-
+            
         const removeButtons = document.querySelectorAll(".listBody__removeRed");
         removeButtons.forEach((removeButtons, index) => {
             removeButtons.addEventListener("click", () => {
@@ -58,6 +58,7 @@
             render();
             })
         })
+        work(taskNumber);
         
     };
 
@@ -73,6 +74,19 @@
             addNewTask(newTaskContent);
         })
     };
+    
+    function work(taskNumber) {
+        let good = "";
+        
+        if(taskNumber === 0){
+            good = `Nie masz nic do zrobienia`;
+            
+        }else{
+            good = `Masz do zrobienia:`;
+        }
+        document.querySelector(".listHeader").innerHTML = good;
+    }
+
 
     init ();
 }
